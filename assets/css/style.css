@@ -156,7 +156,7 @@ img { max-width: 100%; display: block; }
   color: #d3d7cf;
 }
 .term-body .readme { margin: 8px 0 18px; font-size: 1.02rem; line-height: 1.55; color: #d3d7cf; }
-.term-body .readme .kw { color: var(--yellow); font-weight: 700; }
+.term-body .readme .kw { color: var(--yellow); }
 .cursor {
   display: inline-block;
   width: 0.55em;
