@@ -216,6 +216,9 @@ h3 { color: var(--text); }
 .recruit .ko-text h3 { font-family: "Lato", sans-serif; font-size: 1.15rem; }
 .recruit a { color: var(--bg); font-weight: 700; }
 .recruit a:hover { color: #204a87; }
+.recruit .recruit-more { display: inline-block; margin-top: 8px; font-family: var(--mono); font-size: 1.02rem; }
+.recruit .ko-text .recruit-more { font-family: "Lato", sans-serif; }
+section[id] { scroll-margin-top: 64px; }
 
 /* News */
 .news { list-style: none; padding: 0; margin: 0; }
