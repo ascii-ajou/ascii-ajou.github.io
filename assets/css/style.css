@@ -301,9 +301,8 @@ h3 { color: var(--text); }
 .members { display: grid; grid-template-columns: repeat(auto-fill, minmax(185px, 1fr)); gap: 16px; margin-bottom: 40px; }
 .member { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; text-align: center; }
 .member img {
-  width: 128px;
-  height: 128px;
-  max-width: 70%;
+  width: 148px;
+  max-width: 80%;
   height: auto;
   aspect-ratio: 1 / 1;
   margin: 20px auto 0;
