@@ -17,5 +17,5 @@ python3 -m http.server 8000
 Open http://localhost:8000
 
 ## Deploy (GitHub Pages)
-1. Push this folder to a GitHub repo (e.g. `ascii-lab.github.io` for a root URL).
+1. Push to `ascii-ajou/ascii-ajou.github.io` → served at https://ascii-ajou.github.io/
 2. Settings → Pages → Source: `main` branch, `/ (root)`.
