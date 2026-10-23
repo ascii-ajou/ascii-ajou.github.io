@@ -135,8 +135,8 @@ img { max-width: 100%; display: block; }
   text-align: left;
   font-family: inherit;
   font-weight: 700;
-  font-size: clamp(10px, 3.6vw, 24px);
-  line-height: 0.95;
+  font-size: clamp(10px, 4.2vw, 30px);
+  line-height: 1.05;
   background: linear-gradient(180deg, #b6f36b, #3fd6a5);
   -webkit-background-clip: text;
   background-clip: text;
