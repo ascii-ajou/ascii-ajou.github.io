@@ -110,7 +110,7 @@ img { max-width: 100%; display: block; }
   padding: 72px 16px 80px;
 }
 .terminal {
-  max-width: 760px;
+  max-width: calc(var(--max) - 40px);
   margin: 0 auto;
   border-radius: 10px;
   overflow: hidden;
