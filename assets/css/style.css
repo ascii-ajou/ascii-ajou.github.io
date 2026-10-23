@@ -356,6 +356,15 @@ h3 { color: var(--text); }
 .contact-list { list-style: none; padding: 0; font-size: 1.1rem; }
 .contact-list li { padding: 10px 0; border-bottom: 1px solid var(--line); }
 .contact-list strong { display: inline-block; width: 160px; color: var(--yellow); font-family: var(--mono); }
+.join { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.join-card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 22px 26px 24px; }
+.join-card h3 { margin: 0 0 10px; color: var(--yellow); font-family: var(--mono); font-size: 1.25rem; }
+.join-card[lang="ko"] h3 { font-family: "Lato", sans-serif; font-size: 1.12rem; }
+.join-card ul { list-style: none; padding: 0; margin: 0 0 22px; }
+.join-card ul:last-child { margin-bottom: 0; }
+.join-card li { padding: 5px 0 5px 22px; position: relative; }
+.join-card li::before { content: ">"; position: absolute; left: 0; color: var(--green); font-family: var(--mono); font-weight: 700; }
+.join-cta { margin: 24px 0 0; font-size: 1.05rem; }
 .map { width: 100%; height: 380px; border: 0; border-radius: 8px; margin-top: 24px; }
 
 /* ---------- Footer ---------- */
