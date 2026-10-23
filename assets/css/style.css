@@ -221,7 +221,7 @@ h3 { color: var(--text); }
 .news { list-style: none; padding: 0; margin: 0; }
 .news li {
   display: grid;
-  grid-template-columns: 130px 1fr;
+  grid-template-columns: 175px 1fr;
   gap: 16px;
   padding: 12px 0;
   border-bottom: 1px solid var(--line);
