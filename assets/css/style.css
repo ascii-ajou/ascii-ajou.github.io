@@ -290,6 +290,7 @@ section[id] { scroll-margin-top: 64px; }
 .pubs li { padding: 14px 0; border-bottom: 1px solid var(--line); }
 .pubs .venue { font-family: var(--mono); font-weight: 700; color: var(--blue); margin-right: 8px; }
 .pubs .title { font-weight: 700; color: #eeeeec; }
+.pubs.selected .title { font-weight: 400; }
 .pubs .where { font-style: italic; color: var(--muted); }
 .pubs .authors { color: var(--text); }
 .tag {
