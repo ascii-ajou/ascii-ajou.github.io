@@ -128,23 +128,26 @@ img { max-width: 100%; display: block; }
 .term-body .prompt { margin: 0; font-size: 1.05rem; }
 .term-body .u { color: #8ae234; font-weight: 700; }
 .term-body .d { color: #729fcf; font-weight: 700; }
-.hero-brand { display: flex; align-items: center; justify-content: center; gap: 22px; margin: 18px 0 6px; }
-.hero img.logo { width: clamp(64px, 12vw, 120px); }
-.hero h1 { margin: 0; }
-/* Box-drawing glyphs aren't in Google's Ubuntu Mono subsets: self-hosted subset (Ubuntu Font Licence) */
+.hero h1 { margin: 22px 0 10px; text-align: center; }
+/* ASCII art uses block glyphs missing from Google's Ubuntu Mono: self-hosted DejaVu Sans Mono subset */
 @font-face {
-  font-family: "Ubuntu Mono Art";
-  src: url("../fonts/ubuntu-mono-art.ttf") format("truetype");
+  font-family: "ASCII Art";
+  src: url("../fonts/dejavu-mono-art.ttf") format("truetype");
   font-display: block;
 }
 .ascii-art {
+  display: inline-block;
   margin: 0;
-  font-family: "Ubuntu Mono Art", "DejaVu Sans Mono", Menlo, Consolas, monospace;
+  text-align: left;
+  font-family: "ASCII Art", "DejaVu Sans Mono", Menlo, Consolas, monospace;
   font-weight: 400;
-  font-size: clamp(11px, 3.6vw, 26px);
+  font-size: clamp(8px, 2.6vw, 17px);
   line-height: 1;
-  color: #8ae234;
-  text-shadow: 0 0 14px rgba(138, 226, 52, 0.35);
+  background: linear-gradient(180deg, #b6f36b, #3fd6a5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 10px rgba(110, 230, 120, 0.3));
 }
 .hero .subtitle {
   margin: 4px 0 22px;
@@ -164,7 +167,7 @@ img { max-width: 100%; display: block; }
 }
 @keyframes blink { 50% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
-@media (max-width: 560px) { .term-body { padding: 18px 16px 20px; } .hero-brand { gap: 12px; } }
+@media (max-width: 560px) { .term-body { padding: 18px 16px 20px; } }
 
 .page-banner {
   background: linear-gradient(rgba(5, 11, 85, 0.55), rgba(5, 11, 85, 0.75)), url("../img/hero.jpg") center / cover;
