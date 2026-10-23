@@ -202,7 +202,8 @@ h3 { color: var(--navy); }
 .news .date { font-weight: 700; color: var(--navy); }
 @media (max-width: 560px) { .news li { grid-template-columns: 1fr; gap: 2px; } }
 .news.collapsed li:nth-child(n+6) { display: none; }
-.news-toggle {
+.news-toggle, .more-btn {
+  display: inline-block;
   margin-top: 14px;
   background: none;
   border: 1px solid var(--navy);
@@ -212,8 +213,9 @@ h3 { color: var(--navy); }
   font: inherit;
   font-weight: 700;
   cursor: pointer;
+  text-decoration: none;
 }
-.news-toggle:hover { background: var(--navy); color: #fff; }
+.news-toggle:hover, .more-btn:hover { background: var(--navy); color: #fff; }
 
 /* Cards */
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
