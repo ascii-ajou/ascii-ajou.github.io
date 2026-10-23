@@ -365,6 +365,9 @@ section[id] { scroll-margin-top: 64px; }
 .paper-link { text-decoration: none; font-size: 1.1em; display: inline-block; transition: transform 0.15s; }
 .paper-link:hover { transform: scale(1.2); }
 
+.news-icon { text-decoration: none; display: inline-block; transition: transform 0.15s; }
+.news-icon:hover { transform: scale(1.25); }
+
 /* Gallery */
 .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
 .gallery figure { margin: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
