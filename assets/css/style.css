@@ -307,7 +307,7 @@ h3 { color: var(--text); }
   height: auto;
   aspect-ratio: 1 / 1;
   margin: 20px auto 0;
-  border-radius: 50%;
+  border-radius: 16px;
   object-fit: cover;
   object-position: center 20%;
   border: 2px solid var(--line);
