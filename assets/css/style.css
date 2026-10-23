@@ -129,25 +129,19 @@ img { max-width: 100%; display: block; }
 .term-body .u { color: #8ae234; font-weight: 700; }
 .term-body .d { color: #729fcf; font-weight: 700; }
 .hero h1 { margin: 22px 0 10px; text-align: center; }
-/* ASCII art uses block glyphs missing from Google's Ubuntu Mono: self-hosted DejaVu Sans Mono subset */
-@font-face {
-  font-family: "ASCII Art";
-  src: url("../fonts/dejavu-mono-art.ttf") format("truetype");
-  font-display: block;
-}
 .ascii-art {
   display: inline-block;
   margin: 0;
   text-align: left;
-  font-family: "ASCII Art", "DejaVu Sans Mono", Menlo, Consolas, monospace;
-  font-weight: 400;
-  font-size: clamp(8px, 2.6vw, 17px);
-  line-height: 1;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: clamp(10px, 3.6vw, 24px);
+  line-height: 0.95;
   background: linear-gradient(180deg, #b6f36b, #3fd6a5);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 10px rgba(110, 230, 120, 0.3));
+  filter: drop-shadow(0 0 6px rgba(110, 230, 120, 0.18));
 }
 .hero .subtitle {
   margin: 4px 0 22px;
