@@ -19,3 +19,6 @@ Open http://localhost:8000
 ## Deploy (GitHub Pages)
 1. Push to `ascii-ajou/ascii-ajou.github.io` → served at https://ascii-ajou.github.io/
 2. Settings → Pages → Source: `main` branch, `/ (root)`.
+
+## Updating CSS/JS
+Browsers cache assets for ~10 min. After changing `style.css` or `main.js`, bump the `?v=N` query in every HTML page.
