@@ -265,7 +265,6 @@ h3 { color: var(--text); }
 .pubs .title { font-weight: 700; color: #eeeeec; }
 .pubs .where { font-style: italic; color: var(--muted); }
 .pubs .authors { color: var(--text); }
-.pubs .me { text-decoration: underline; color: var(--yellow); }
 .tag {
   display: inline-block;
   font-size: 0.72rem;
