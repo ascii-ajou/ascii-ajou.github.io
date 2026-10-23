@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Research | ASCII Lab</title>
+  <link rel="icon" href="assets/img/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html"><img src="assets/img/logo.png" alt="">ASCII Lab</a>
+      <button class="nav-toggle" aria-label="Menu">&#9776;</button>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="professor.html">Professor</a>
+        <a href="members.html">Members</a>
+        <a href="research.html" class="active">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-banner"><h1>RESEARCH</h1></div>
+
+  <section>
+    <div class="container">
+      <div class="project">
+        <img src="assets/img/research-overview.png" alt="Architectures, Systems, and Computing for Intelligence Innovations">
+        <div class="text areas">
+          <p><strong>Architectures:</strong> Our lab explores computer architecture innovations for artificial intelligence. We focus on memory-centric computing to minimize data movement and overcome the memory wall. We also design neural processing units and specialized accelerators with high energy efficiency and scalability. By combining these approaches, we enable optimized AI training, inference, and real-time failure monitoring from edge to datacenter.</p>
+          <p><strong>Systems:</strong> Embodied AI applications require intensive computation and seamless integration of heterogeneous sensors for perception, reasoning, and interaction in real-world environments. In contrast, embedded robotic systems operate under strict constraints in power, memory, and processing capability. Bridging this gap calls for specialized computing and intelligent I/O architectures, leveraging SmartNICs and DPUs to enable efficient data movement, sensor fusion, and real-time operation.</p>
+          <p><strong>Computing:</strong> Our lab optimizes artificial intelligence and robotic frameworks for efficient execution. We focus on reducing memory footprint and improving runtime performance through context-aware dynamic optimization, including adaptive computation and model compression. By leveraging intermediate representations and hardware–software co-design, we accelerate critical modules while preserving inference accuracy and real-time performance. These efforts enable lightweight, adaptive, and reliable computing solutions for AI and robotics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="container">
+      <h2 class="section-title">Research Projects</h2>
+
+      <div class="project">
+        <div class="text">
+          <h3>Context-Aware Dynamic Optimization for Physical AI</h3>
+          <p>Physical AI models, such as WAMs and VLAs, require substantial computational resources to perceive complex environments and generate actions in real time, making it essential to balance computational efficiency and accuracy on resource-constrained robotic platforms. This research explores dynamic optimization techniques that adapt computational workloads to the robot's current situation and input characteristics, moving beyond conventional static model compression approaches. In particular, we leverage intermediate Latent Representations to assess situational complexity, information importance, and computational necessity, enabling adaptive techniques such as Early Exit, Dynamic Pruning, and Adaptive Attention Masking. By selectively eliminating redundant computations in simple or predictable situations while allocating sufficient resources to complex or critical scenarios, the proposed approach aims to preserve model accuracy while reducing computational overhead. Unlike static compression methods, context-aware optimization offers greater flexibility in computational resource allocation, potentially achieving a superior trade-off between compression efficiency and accuracy. Ultimately, this research aims to improve the real-time performance and energy efficiency of Physical AI, enabling efficient deployment of advanced AI models on resource-constrained embedded robotic systems.</p>
+        </div>
+        <img src="assets/img/research-dynamic-opt.png" alt="Context-aware dynamic optimization">
+      </div>
+
+      <div class="project">
+        <div class="text">
+          <h3>Robotic Networking &amp; Intelligent I/O Systems</h3>
+          <p>As Physical AI continues to advance, robotic systems increasingly require the ability to process and integrate massive amounts of heterogeneous sensor data in real time. This research explores next-generation robotic networking architectures that extend beyond conventional Ethernet-based communication to encompass all incoming I/O streams, including CAN, cameras, and LiDAR. In particular, it addresses critical challenges such as CPU overhead, resource contention, and real-time performance degradation arising from sensor data acquisition, synchronization, and transmission. To overcome these limitations, we investigate novel system architectures leveraging SmartNICs and Data Processing Units (DPUs) to offload data processing and selected Sensor Fusion tasks. Through system software optimization and dedicated hardware design, we aim to streamline the end-to-end data path from sensors to AI accelerators. Ultimately, this research seeks to extend conventional compute-centric robotic AI acceleration toward intelligent data movement and I/O processing, establishing a foundation for high-performance, low-latency, and reliable robotic computing platforms.</p>
+        </div>
+        <img src="assets/img/research-io.png" alt="Robotic networking and intelligent I/O architecture">
+      </div>
+
+      <div class="project">
+        <div class="text">
+          <h3>Real-Time Failure Prediction &amp; Memory-Centric Acceleration for Physical AI</h3>
+          <p>As Physical AI systems interact directly with the real world, incorrect predictions or decision-making failures can lead to physical accidents, making proactive failure detection essential. This research explores lightweight AI networks that predict potential failures before physical actions are executed by leveraging intermediate Latent Representations generated during the inference of primary Physical AI models, such as WAMs and VLAs. In particular, we investigate independent execution architectures that enable continuous failure monitoring without interfering with the latency or real-time performance of the primary AI model. To achieve this, we explore memory-centric AI accelerator architectures that efficiently reuse intermediate data already residing in memory while minimizing additional CPU and GPU workloads. Through dedicated hardware and system software co-design, we aim to minimize data movement and memory contention, enabling efficient parallel execution of primary inference and failure detection. Ultimately, this research seeks to establish a foundation for reliable Physical AI computing systems capable of proactively predicting physical failures while preserving the performance of primary AI inference.</p>
+        </div>
+        <img src="assets/img/research-failure.png" alt="Real-time failure prediction">
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>&copy; ASCII Lab, Department of Mobility Engineering, Ajou University</span>
+      <span><a href="mailto:hjkal@ajou.ac.kr">hjkal@ajou.ac.kr</a></span>
+    </div>
+  </footer>
+</body>
+</html>
