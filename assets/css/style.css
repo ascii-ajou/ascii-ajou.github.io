@@ -183,6 +183,7 @@ h3 { color: var(--navy); }
 .tag.top { background: var(--navy); color: #fff; }
 .tag.q1 { background: #2e7d32; color: #fff; }
 .tag.q2 { background: #6d8a2e; color: #fff; }
+.tag.q3 { background: #9a7b2c; color: #fff; }
 .pubs .id { font-weight: 700; color: var(--navy); margin-right: 6px; }
 .note { color: var(--muted); font-size: 0.9rem; }
 
