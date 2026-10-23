@@ -205,13 +205,15 @@ h3 { color: var(--text); }
 .lead { font-size: 1.1rem; max-width: 860px; }
 
 .recruit {
-  border-left: 4px solid var(--yellow);
-  background: var(--panel);
+  background: var(--yellow);
+  color: var(--bg);
   padding: 18px 22px;
   border-radius: 4px;
 }
-.recruit h3 { margin: 0 0 6px; color: var(--yellow); font-family: var(--mono); font-size: 1.3rem; }
+.recruit h3 { margin: 0 0 6px; color: var(--bg); font-family: var(--mono); font-size: 1.3rem; }
 .recruit p { margin: 0; }
+.recruit a { color: var(--bg); font-weight: 700; }
+.recruit a:hover { color: #204a87; }
 
 /* News */
 .news { list-style: none; padding: 0; margin: 0; }
