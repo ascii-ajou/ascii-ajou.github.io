@@ -285,12 +285,12 @@ h3 { color: var(--text); }
 .note { color: var(--muted); font-size: 0.9rem; }
 
 /* Professor */
-.profile { display: grid; grid-template-columns: 260px 1fr; gap: 36px; align-items: start; }
+.profile { display: grid; grid-template-columns: 200px 1fr; gap: 36px; align-items: start; }
 .profile img.photo { border-radius: 8px; border: 1px solid var(--line); }
 .profile h2 { margin: 0 0 12px; color: var(--green); font-family: var(--mono); font-size: 1.9rem; }
 .social { display: flex; gap: 12px; margin-top: 16px; }
 .social img { width: 36px; height: 36px; border-radius: 6px; }
-@media (max-width: 700px) { .profile { grid-template-columns: 1fr; } .profile img.photo { max-width: 260px; } }
+@media (max-width: 700px) { .profile { grid-template-columns: 1fr; } .profile img.photo { max-width: 200px; } }
 
 .timeline { list-style: none; padding: 0; margin: 0; }
 .timeline li { display: grid; grid-template-columns: 190px 1fr; gap: 16px; padding: 8px 0; border-bottom: 1px solid var(--line); }
