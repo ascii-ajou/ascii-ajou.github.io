@@ -22,6 +22,39 @@ document.addEventListener("DOMContentLoaded", function () {
     news.after(more);
   }
 
+  // Home slideshow: auto-advance every 5s, pause on hover/focus
+  var show = document.querySelector(".slideshow");
+  if (show) {
+    var slides = show.querySelectorAll(".slide");
+    var dots = show.querySelector(".slide-dots");
+    var current = 0;
+    var timer = null;
+    var go = function (i) {
+      slides[current].classList.remove("is-active");
+      dots.children[current].classList.remove("is-active");
+      current = (i + slides.length) % slides.length;
+      slides[current].classList.add("is-active");
+      dots.children[current].classList.add("is-active");
+    };
+    slides.forEach(function (_, i) {
+      var d = document.createElement("button");
+      d.setAttribute("aria-label", "Slide " + (i + 1));
+      if (i === 0) d.classList.add("is-active");
+      d.addEventListener("click", function () { go(i); });
+      dots.appendChild(d);
+    });
+    show.querySelector(".prev").addEventListener("click", function () { go(current - 1); });
+    show.querySelector(".next").addEventListener("click", function () { go(current + 1); });
+    var autoplay = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var start = function () { if (autoplay && !timer) timer = setInterval(function () { go(current + 1); }, 5000); };
+    var stop = function () { clearInterval(timer); timer = null; };
+    show.addEventListener("mouseenter", stop);
+    show.addEventListener("mouseleave", start);
+    show.addEventListener("focusin", stop);
+    show.addEventListener("focusout", start);
+    start();
+  }
+
   // Home terminal: type "cat README.md", then stream its output
   var cmd = document.querySelector(".term-body .cmd");
   var readme = document.querySelector(".term-body .readme");
