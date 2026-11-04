@@ -102,7 +102,7 @@ def count_pubs():
 
 
 def render(s, c):
-    per_year = s["per_year"]
+    per_year = dict(list(s["per_year"].items())[-5:])  # latest 5 years
     peak = max(per_year.values()) or 1
     this_year = str(datetime.date.today().year)
     bars = []
@@ -137,7 +137,7 @@ def render(s, c):
           </div>
         </div>
         <figure class="cite-chart">
-          <figcaption>Citations per year</figcaption>
+          <figcaption>Citations per year (last 5 years)</figcaption>
           <ol class="bars">
 {chr(10).join(bars)}
           </ol>
