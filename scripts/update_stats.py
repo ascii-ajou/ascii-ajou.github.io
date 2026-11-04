@@ -82,7 +82,7 @@ def count_pubs():
     n = lambda s, pat=r"<li>": len(re.findall(pat, s))
     paper_titles = titles(conf) + titles(jour) + titles(review)
     kw = [(label, sum(1 for t in paper_titles if re.search(pat, t, re.I))) for label, pat in KEYWORDS]
-    kw = sorted([k for k in kw if k[1]], key=lambda k: -k[1])
+    kw = sorted([k for k in kw if k[1]], key=lambda k: -k[1])[:6]  # top 6 topics
     conf_items = re.findall(r"<li>.*?</li>", conf, re.S)
     jour_items = re.findall(r"<li>.*?</li>", jour, re.S)
     has = lambda li, cls: f'class="tag {cls}"' in li
