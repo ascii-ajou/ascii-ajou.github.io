@@ -310,7 +310,7 @@ section[id] { scroll-margin-top: 64px; }
 .tag.kiise { background: linear-gradient(135deg, #8e24aa, #6a1b9a); --glow: rgba(106, 27, 154, 0.28); }
 .tag.top { background: linear-gradient(135deg, #fb8c00, #e65100); --glow: rgba(230, 81, 0, 0.28); }
 .tag.sci { background: linear-gradient(135deg, #43a047, #2e7d32); --glow: rgba(46, 125, 50, 0.28); }
-.pubs.wip li { padding: 10px 0; }
+.pubs.review li { padding: 10px 0; }
 .pubs .id { font-family: var(--mono); font-weight: 700; color: var(--blue); margin-right: 6px; }
 .note { color: var(--muted); font-size: 0.9rem; }
 
