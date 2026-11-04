@@ -80,4 +80,38 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }, 900);
   }
+  // Media protection: block right-click, drag, long-press save and video download
+  var isMedia = function (el) { return el && el.closest && el.closest("img, video, .lightbox"); };
+  document.addEventListener("contextmenu", function (e) { if (isMedia(e.target)) e.preventDefault(); });
+  document.addEventListener("dragstart", function (e) { if (isMedia(e.target)) e.preventDefault(); });
+  document.querySelectorAll("img").forEach(function (img) { img.setAttribute("draggable", "false"); });
+  document.querySelectorAll("video").forEach(function (v) {
+    v.setAttribute("controlsList", "nodownload noplaybackrate");
+    v.setAttribute("disablePictureInPicture", "");
+  });
+
+  // Full-size photos open in an in-page viewer instead of a raw image tab
+  var links = document.querySelectorAll('a[href$=".jpg"], a[href$=".jpeg"], a[href$=".png"]');
+  if (links.length) {
+    var box = document.createElement("div");
+    box.className = "lightbox";
+    box.setAttribute("role", "dialog");
+    box.setAttribute("aria-modal", "true");
+    box.innerHTML = '<button class="lightbox-close" aria-label="Close">&times;</button><img alt="" draggable="false">';
+    document.body.appendChild(box);
+    var big = box.querySelector("img");
+    var close = function () { box.classList.remove("open"); big.removeAttribute("src"); document.body.style.overflow = ""; };
+    box.addEventListener("click", function (e) { if (e.target !== big) close(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") close(); });
+    links.forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        var thumb = a.querySelector("img");
+        big.src = a.getAttribute("href");
+        big.alt = thumb ? thumb.alt : "";
+        box.classList.add("open");
+        document.body.style.overflow = "hidden";
+      });
+    });
+  }
 });
