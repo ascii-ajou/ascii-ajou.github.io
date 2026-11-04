@@ -115,11 +115,11 @@ def render(s, c):
                     f'{val}<span class="b"></span><span class="y">&rsquo;{y[2:]}</span></li>')
     num = lambda v: f'<span class="num" data-count="{v}">{v}</span>'
     tile = lambda inner, l: f'          <div class="stat">{inner}<span class="lbl">{l}</span></div>'
-    main_tiles = "\n".join(tile(num(v), l) for v, l in [
-        (s["citations"], "Total Citations"), (c["papers"], "Total Papers"), (c["patents"], "Total Patents")])
     row = lambda name, items: (f'          <div class="stats stats-sub"><span class="row-lbl">{name}</span>\n'
                                + "\n".join("  " + tile(num(v), l) for v, l in items) + "\n          </div>")
-    sub_tiles = row("Conference", [(c["conf_bk"], "BK21+ IF4"), (c["conf_kiise"], "KIISE"), (c["conf_other"], "Others")]) + "\n" + \
+    main_tiles = row("Total", [(s["citations"], "Citations"), (c["papers"], "Papers"), (c["patents"], "Patents")]) \
+        .replace("stats stats-sub", "stats stats-main", 1)
+    sub_tiles = row("Conference", [(c["conf_bk"], "BK21+"), (c["conf_kiise"], "KIISE"), (c["conf_other"], "Others")]) + "\n" + \
         row("Journal", [(c["jour_scie"], "SCIE"), (c["jour_kci"], "KCI"), (c["jour_other"], "Others")])
     top = c["keywords"][0][1] if c["keywords"] else 1
     kw_html = "\n".join(
@@ -131,10 +131,10 @@ def render(s, c):
       <h2 class="section-title">Research Impact</h2>
       <div class="impact" data-animate>
         <div class="stats-wrap">
-          <div class="stats stats-main">
 {main_tiles}
-          </div>
+          <div class="stats-group">
 {sub_tiles}
+          </div>
         </div>
         <figure class="cite-chart">
           <figcaption>Citations per year</figcaption>
