@@ -150,7 +150,7 @@ def render(s, c):
 {kw_html}
         </ul>
       </div>
-      <p class="note">Citation metrics from <a href="https://scholar.google.com/citations?user={SCHOLAR_USER}" target="_blank" rel="noopener">Google Scholar</a> (refreshed daily). Paper, patent and keyword counts from <a href="publications.html">Publications</a>.</p>
+      <p class="note">Citation metrics from <a href="https://scholar.google.com/citations?user={SCHOLAR_USER}" target="_blank" rel="noopener">Google Scholar</a>. Paper, patent and keyword counts from <a href="publications.html">Publications</a>.</p>
     </div>
   </section>
   {END}"""
