@@ -83,12 +83,21 @@ def count_pubs():
     paper_titles = titles(conf) + titles(jour) + titles(review)
     kw = [(label, sum(1 for t in paper_titles if re.search(pat, t, re.I))) for label, pat in KEYWORDS]
     kw = sorted([k for k in kw if k[1]], key=lambda k: -k[1])
+    conf_items = re.findall(r"<li>.*?</li>", conf, re.S)
+    jour_items = re.findall(r"<li>.*?</li>", jour, re.S)
+    hangul = lambda li: re.search(r'<span class="where">[^<]*[\uac00-\ud7a3]', li)
+    top = [li for li in conf_items if 'class="tag bk"' in li]
+    domestic = [li for li in conf_items if li not in top and hangul(li)]
+    scie = [li for li in jour_items if 'class="tag sci"' in li]
     return {
-        "papers": n(conf) + n(jour),
-        "top_conf": n(conf, r'class="tag bk"'),
-        "scie": n(jour, r'class="tag sci"'),
+        # Buckets don't overlap, so top-tier + int'l + domestic + SCIE + KCI = total papers
+        "papers": len(conf_items) + len(jour_items),
+        "top_conf": len(top),
+        "intl_conf": len(conf_items) - len(top) - len(domestic),
+        "dom_conf": len(domestic),
+        "scie": len(scie),
+        "kci": len(jour_items) - len(scie),
         "patents": n(section(page, "Patent Applications")) + n(section(page, "Patent Registrations")),
-        "review": n(review),
         "keywords": kw,
     }
 
@@ -105,12 +114,16 @@ def render(s, c):
         val = f'<span class="v">{v}</span>' if v == peak else ""
         bars.append(f'          <li class="{cls}" style="--h:{h}%" tabindex="0" aria-label="{lab}" data-tip="{lab}">'
                     f'{val}<span class="b"></span><span class="y">&rsquo;{y[2:]}</span></li>')
-    tiles = [
-        (s["citations"], "Citations"), (c["papers"], "Papers"), (c["top_conf"], "Top-Tier Conf."),
-        (c["scie"], "SCIE Journals"), (c["patents"], "Patents"), (c["review"], "Under Review"),
-    ]
-    tile_html = "\n".join(f'          <div class="stat"><span class="num" data-count="{v}">{v}</span><span class="lbl">{l}</span></div>'
-                          for v, l in tiles)
+    num = lambda v: f'<span class="num" data-count="{v}">{v}</span>'
+    tile = lambda inner, l: f'          <div class="stat">{inner}<span class="lbl">{l}</span></div>'
+    main_tiles = "\n".join(tile(num(v), l) for v, l in [
+        (s["citations"], "Total Citations"), (c["papers"], "Total Papers"), (c["patents"], "Total Patents")])
+    sub_tiles = "\n".join([
+        tile(num(c["top_conf"]), "Top-Tier Conf."),
+        tile(f'{num(c["intl_conf"])}<span class="sep">/</span>{num(c["dom_conf"])}', "Int&rsquo;l / Domestic Conf."),
+        tile(num(c["scie"]), "SCIE Journals"),
+        tile(num(c["kci"]), "KCI Journals"),
+    ])
     top = c["keywords"][0][1] if c["keywords"] else 1
     kw_html = "\n".join(
         f'          <li style="--w:{round(n / top * 100)}%"><span class="k">{html.escape(k)}</span>'
@@ -120,8 +133,13 @@ def render(s, c):
     <div class="container">
       <h2 class="section-title">Research Impact</h2>
       <div class="impact" data-animate>
-        <div class="stats">
-{tile_html}
+        <div class="stats-wrap">
+          <div class="stats stats-main">
+{main_tiles}
+          </div>
+          <div class="stats stats-sub">
+{sub_tiles}
+          </div>
         </div>
         <figure class="cite-chart">
           <figcaption>Citations per year</figcaption>
