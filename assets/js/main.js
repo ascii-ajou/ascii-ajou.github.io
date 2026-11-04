@@ -22,6 +22,21 @@ document.addEventListener("DOMContentLoaded", function () {
     news.after(more);
   }
 
+  // Gallery: fold past years behind a "Show N events" button
+  document.querySelectorAll(".gallery-fold").forEach(function (g) {
+    var n = g.children.length;
+    var label = "Show " + n + (n === 1 ? " event" : " events");
+    g.classList.add("collapsed");
+    var btn = document.createElement("button");
+    btn.className = "news-toggle gallery-fold-toggle";
+    btn.textContent = label;
+    btn.addEventListener("click", function () {
+      var collapsed = g.classList.toggle("collapsed");
+      btn.textContent = collapsed ? label : "Show less";
+    });
+    g.after(btn);
+  });
+
   // Home terminal: type "cat README.md", then stream its output
   var cmd = document.querySelector(".term-body .cmd");
   var readme = document.querySelector(".term-body .readme");

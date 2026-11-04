@@ -382,15 +382,10 @@ section[id] { scroll-margin-top: 64px; }
 .gallery-empty .u { color: var(--green); font-weight: 700; }
 .gallery-empty .d { color: var(--blue); font-weight: 700; }
 .gallery:not(:empty) + .gallery-empty { display: none; }
-.gallery-fold { margin-top: 48px; }
-.gallery-fold > summary { cursor: pointer; list-style: none; }
-.gallery-fold > summary::-webkit-details-marker { display: none; }
-.gallery-fold > summary h2.section-title { display: inline-block; }
-.gallery-fold > summary h2.section-title::after { content: "\25B8"; display: inline-block; margin-left: 12px; font-size: 1.2rem; color: var(--muted); transition: transform 0.15s; }
-.gallery-fold[open] > summary h2.section-title::after { transform: rotate(90deg); }
-.gallery-fold:not([open]) > summary h2.section-title { margin-bottom: 0; }
-.gallery-fold > summary .count { margin-left: 12px; font-size: 1rem; font-weight: 400; color: var(--muted); }
-.gallery-fold > summary:hover h2.section-title::after, .gallery-fold > summary:hover .count { color: var(--yellow); }
+.section-title.year-past { margin-top: 48px; }
+.gallery-fold.collapsed { display: none; }
+.gallery-fold-toggle { margin-top: 0; }
+.gallery-fold:not(.collapsed) + .gallery-fold-toggle { margin-top: 20px; }
 
 .gallery figure a img { transition: opacity 0.15s; }
 .gallery figure a:hover img { opacity: 0.85; }
