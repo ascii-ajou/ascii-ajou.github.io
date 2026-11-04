@@ -63,6 +63,7 @@ KEYWORDS = [
     ("Processing-in-Memory", r"processing[- ]in[- ]memory|\bPIM\b|in-memory|프로세싱.?인.?메모리"),
     ("AI / DNN Acceleration", r"neural|\bDNN\b|\bGNN\b|machine learning|quantization|embedding|\bAI\b"),
     ("Memory & Cache Systems", r"DRAM|cache|memory access|heterogeneous memory|3D-Stacked|page table"),
+    ("Processors (CPU/GPU/NPU)", r"\bCPUs?\b|\bGPUs?\b|\bNPUs?\b|processor|processing unit|multicore|\bMAC unit"),
     ("Heterogeneous Computing", r"heterogeneous|multicore|multi-GPU"),
     ("Robotics & Embodied AI", r"robot"),
     ("Recommendation Systems", r"recommendation"),
