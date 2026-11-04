@@ -291,7 +291,7 @@ section[id] { scroll-margin-top: 64px; }
 .cite-chart figcaption { font-size: 0.85rem; color: var(--muted); margin-bottom: 8px; }
 .bars { list-style: none; margin: 0; padding: 0; flex: 1; min-height: 150px; display: flex; align-items: flex-end; gap: 6px; border-bottom: 1px solid var(--line); padding-bottom: 22px; position: relative; }
 .bars .bar { flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; position: relative; outline: none; }
-.bars .b { width: 100%; max-width: 26px; height: var(--h); background: var(--green); border-radius: 4px 4px 0 0; transition: opacity 0.15s; }
+.bars .b { width: 78%; height: var(--h); background: var(--green); border-radius: 4px 4px 0 0; transition: opacity 0.15s; }
 .bars .ytd .b { opacity: 0.55; }
 .bars .v { font-family: var(--mono); font-size: 0.85rem; color: var(--text); margin-bottom: 2px; }
 .bars .y { position: absolute; bottom: -22px; font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
