@@ -22,14 +22,14 @@ document.addEventListener("DOMContentLoaded", function () {
     news.after(more);
   }
 
-  // Gallery: fold past years behind a "Show N events" button
-  document.querySelectorAll(".gallery-fold").forEach(function (g) {
+  // Gallery: each year can fold behind a "Show N events" button; the latest year starts open
+  document.querySelectorAll(".gallery-fold").forEach(function (g, idx) {
     var n = g.children.length;
     var label = "Show " + n + (n === 1 ? " event" : " events");
-    g.classList.add("collapsed");
+    if (idx > 0) g.classList.add("collapsed");
     var btn = document.createElement("button");
     btn.className = "news-toggle gallery-fold-toggle";
-    btn.textContent = label;
+    btn.textContent = idx > 0 ? label : "Show less";
     btn.addEventListener("click", function () {
       var collapsed = g.classList.toggle("collapsed");
       btn.textContent = collapsed ? label : "Show less";
