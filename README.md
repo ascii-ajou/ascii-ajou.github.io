@@ -25,9 +25,10 @@ Browsers cache assets for ~10 min. After changing `style.css` or `main.js`, bump
 
 ## Research Impact statistics (Home)
 `index.html` has a generated block between `<!-- STATS:START -->` and `<!-- STATS:END -->`.
-- `scripts/update_stats.py` pulls citations / h-index / i10-index / citations-per-year from
+- `scripts/update_stats.py` pulls total citations and citations-per-year from
   Google Scholar (Hongju Kal) and counts papers, top-tier conferences, SCIE journals and patents
-  from `publications.html`. If Scholar blocks the request, the last values in
+  from `publications.html`, plus research-keyword counts over paper titles (edit `KEYWORDS` in the script
+  to add a topic). If Scholar blocks the request, the last values in
   `scripts/scholar-cache.json` are reused.
 - `scripts/daily_stats.sh` runs it daily from cron on the lab server and pushes only when values change:
   `0 6 * * * /home2/hongju/CLAUDE/HOME_PAGE/scripts/daily_stats.sh >> /home2/hongju/CLAUDE/HOME_PAGE/scripts/daily_stats.log 2>&1`

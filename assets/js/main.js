@@ -37,6 +37,45 @@ document.addEventListener("DOMContentLoaded", function () {
     g.after(btn);
   });
 
+  // Research Impact: count numbers up and grow bars when the block scrolls into view
+  var animBlocks = document.querySelectorAll("[data-animate]");
+  if (animBlocks.length && "IntersectionObserver" in window &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    var countUp = function (el) {
+      var end = parseInt(el.getAttribute("data-count"), 10) || 0;
+      var t0 = null, dur = 1200;
+      var step = function (t) {
+        if (t0 === null) t0 = t;
+        var p = Math.min((t - t0) / dur, 1);
+        el.textContent = Math.round(end * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    animBlocks.forEach(function (block) {
+      block.classList.add("pre");
+      block.querySelectorAll("[data-count]").forEach(function (el) { el.textContent = "0"; });
+      block.querySelectorAll(".stat, .keywords li").forEach(function (el, i) { el.style.transitionDelay = (i * 60) + "ms"; });
+      block.querySelectorAll(".bars .b").forEach(function (el, i) { el.style.transitionDelay = (i * 70) + "ms"; });
+      block.querySelectorAll(".keywords li").forEach(function (el, i) {
+        el.style.setProperty("--d", (i * 60) + "ms");
+      });
+    });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        io.unobserve(e.target);
+        e.target.classList.remove("pre");
+        e.target.querySelectorAll("[data-count]").forEach(countUp);
+        // Clear stagger delays afterwards so hover effects respond instantly
+        setTimeout(function () {
+          e.target.querySelectorAll(".stat, .keywords li, .bars .b").forEach(function (el) { el.style.transitionDelay = ""; });
+        }, 2000);
+      });
+    }, { threshold: 0.3 });
+    animBlocks.forEach(function (b) { io.observe(b); });
+  }
+
   // Home terminal: type "cat README.md", then stream its output
   var cmd = document.querySelector(".term-body .cmd");
   var readme = document.querySelector(".term-body .readme");

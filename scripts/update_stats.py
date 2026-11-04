@@ -12,6 +12,7 @@ Run from anywhere:  python3 scripts/update_stats.py
 scripts/daily_stats.sh runs this once a day from cron and pushes when values change.
 """
 import datetime
+import html
 import json
 import os
 import re
@@ -56,15 +57,39 @@ def section(page, title):
     return m.group(1) if m else ""
 
 
+# Research keywords: each label is counted over paper titles (conference, journal, under review).
+# Counts update automatically; add a row here when the lab starts a new topic.
+KEYWORDS = [
+    ("Processing-in-Memory", r"processing[- ]in[- ]memory|\bPIM\b|in-memory|프로세싱.?인.?메모리"),
+    ("AI / DNN Acceleration", r"neural|\bDNN\b|\bGNN\b|machine learning|quantization|embedding|\bAI\b"),
+    ("Memory & Cache Systems", r"DRAM|cache|memory access|heterogeneous memory|3D-Stacked|page table"),
+    ("Heterogeneous Computing", r"heterogeneous|multicore|multi-GPU"),
+    ("Robotics & Embodied AI", r"robot"),
+    ("Recommendation Systems", r"recommendation"),
+    ("Scheduling & Serving", r"scheduling|serving|execution scheme"),
+    ("Error Correction Codes", r"error correction|\bBCH\b"),
+]
+
+
+def titles(chunk):
+    return [html.unescape(t) for t in re.findall(r'<span class="title">"?(.*?)"?</span>', chunk)]
+
+
 def count_pubs():
     page = open(PUBS, encoding="utf-8").read()
     conf, jour = section(page, "Conference Papers"), section(page, "Journal Papers")
+    review = section(page, "Under Review")
     n = lambda s, pat=r"<li>": len(re.findall(pat, s))
+    paper_titles = titles(conf) + titles(jour) + titles(review)
+    kw = [(label, sum(1 for t in paper_titles if re.search(pat, t, re.I))) for label, pat in KEYWORDS]
+    kw = sorted([k for k in kw if k[1]], key=lambda k: -k[1])
     return {
         "papers": n(conf) + n(jour),
         "top_conf": n(conf, r'class="tag bk"'),
         "scie": n(jour, r'class="tag sci"'),
         "patents": n(section(page, "Patent Applications")) + n(section(page, "Patent Registrations")),
+        "review": n(review),
+        "keywords": kw,
     }
 
 
@@ -81,17 +106,20 @@ def render(s, c):
         bars.append(f'          <li class="{cls}" style="--h:{h}%" tabindex="0" aria-label="{lab}" data-tip="{lab}">'
                     f'{val}<span class="b"></span><span class="y">&rsquo;{y[2:]}</span></li>')
     tiles = [
-        (s["citations"], "Citations"), (s["h_index"], "h-index"), (s["i10_index"], "i10-index"),
-        (c["papers"], "Papers"), (c["top_conf"], "Top-Tier Conf."), (c["scie"], "SCIE Journals"),
-        (c["patents"], "Patents"),
+        (s["citations"], "Citations"), (c["papers"], "Papers"), (c["top_conf"], "Top-Tier Conf."),
+        (c["scie"], "SCIE Journals"), (c["patents"], "Patents"), (c["review"], "Under Review"),
     ]
-    tile_html = "\n".join(f'          <div class="stat"><span class="num">{v}</span><span class="lbl">{l}</span></div>'
+    tile_html = "\n".join(f'          <div class="stat"><span class="num" data-count="{v}">{v}</span><span class="lbl">{l}</span></div>'
                           for v, l in tiles)
+    top = c["keywords"][0][1] if c["keywords"] else 1
+    kw_html = "\n".join(
+        f'          <li style="--w:{round(n / top * 100)}%"><span class="k">{html.escape(k)}</span>'
+        f'<span class="c" data-count="{n}">{n}</span></li>' for k, n in c["keywords"])
     return f"""{START}
   <section class="alt">
     <div class="container">
       <h2 class="section-title">Research Impact</h2>
-      <div class="impact">
+      <div class="impact" data-animate>
         <div class="stats">
 {tile_html}
         </div>
@@ -102,7 +130,13 @@ def render(s, c):
           </ol>
         </figure>
       </div>
-      <p class="note">Citation metrics from <a href="https://scholar.google.com/citations?user={SCHOLAR_USER}" target="_blank" rel="noopener">Google Scholar</a> (refreshed daily). Paper and patent counts from <a href="publications.html">Publications</a>.</p>
+      <div class="keywords" data-animate>
+        <h3>Research Keywords <span>papers per topic</span></h3>
+        <ul>
+{kw_html}
+        </ul>
+      </div>
+      <p class="note">Citation metrics from <a href="https://scholar.google.com/citations?user={SCHOLAR_USER}" target="_blank" rel="noopener">Google Scholar</a> (refreshed daily). Paper, patent and keyword counts from <a href="publications.html">Publications</a>.</p>
     </div>
   </section>
   {END}"""

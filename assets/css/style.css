@@ -295,6 +295,26 @@ section[id] { scroll-margin-top: 64px; }
   font-family: var(--mono); font-size: 0.8rem; padding: 3px 8px; border-radius: 4px; z-index: 2; pointer-events: none;
 }
 
+.keywords { margin-top: 28px; }
+.keywords h3 { margin: 0 0 12px; font-size: 1rem; color: var(--text); }
+.keywords h3 span { margin-left: 8px; font-size: 0.85rem; font-weight: 400; color: var(--muted); }
+.keywords ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 24px; }
+@media (max-width: 640px) { .keywords ul { grid-template-columns: 1fr; } }
+.keywords li { position: relative; display: flex; justify-content: space-between; align-items: center; padding: 7px 12px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel); overflow: hidden; }
+.keywords li::before { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--w); background: var(--green-tint); border-right: 2px solid var(--green); transition: width 1s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0ms); }
+.keywords .k, .keywords .c { position: relative; }
+.keywords .k { font-size: 0.95rem; }
+.keywords .c { font-family: var(--mono); font-weight: 700; color: var(--green); }
+
+/* Research impact animation (main.js toggles .pre until the block scrolls into view) */
+.bars .b { transition: height 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.15s; }
+.pre .bars .b { height: 0; }
+.pre .bars .v { opacity: 0; }
+.bars .v { transition: opacity 0.4s 0.9s; }
+.pre.keywords li::before { width: 0; }
+.stat, .keywords li { transition: transform 0.5s ease, opacity 0.5s ease; }
+.pre .stat, .pre.keywords li { opacity: 0; transform: translateY(8px); }
+
 /* Cards */
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
 .card {
