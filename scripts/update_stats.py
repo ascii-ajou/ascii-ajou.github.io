@@ -114,7 +114,7 @@ def render(s, c):
         bars.append(f'          <li class="{cls}" style="--h:{h}%" tabindex="0" aria-label="{lab}" data-tip="{lab}">'
                     f'{val}<span class="b"></span><span class="y">&rsquo;{y[2:]}</span></li>')
     num = lambda v: f'<span class="num" data-count="{v}">{v}</span>'
-    tile = lambda inner, l: f'          <div class="stat">{inner}<span class="lbl">{l}</span></div>'
+    tile = lambda inner, l: f'          <div class="stat"><span class="lbl">{l}</span>{inner}</div>'
     row = lambda name, items: (f'          <div class="stats stats-sub"><span class="row-lbl">{name}</span>\n'
                                + "\n".join("  " + tile(num(v), l) for v, l in items) + "\n          </div>")
     main_tiles = row("Total", [(s["citations"], "Citations"), (c["papers"], "Papers"), (c["patents"], "Patents")]) \
